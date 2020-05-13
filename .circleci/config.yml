@@ -1,17 +1,12 @@
-# testing using CircleCI orb
-# see https://on.cypress.io/circleci-orb
-
-# for non-orb configuration see old commit
-# https://github.com/cypress-io/cypress-example-kitchensink/blob/aabb10cc1bb9dee88e1bf28e0af5e9661427ee7a/circle.yml
-
-# to use CircleCI orbs need to use version >= 2.1
 version: 2.1
 orbs:
-  # use Cypress orb from CircleCI registry
   cypress: cypress-io/cypress@1.16.1
-  # for testing on Windows
-  # https://circleci.com/docs/2.0/hello-world-windows/
   win: circleci/windows@1
+
+executors:
+  mac:
+    macos:
+      xcode: "10.1.0"
 
 jobs:
   win-test:
@@ -61,35 +56,6 @@ jobs:
       - run: npm run semantic-release
 
 workflows:
-  win-build:
-    jobs:
-      - win-test
-
-  mac-build:
-    jobs:
-      - cypress/install:
-          name: 'Mac install'
-          executor: mac
-          # and builds the app using this command
-          build: 'npm run build'
-          post-steps:
-            # show Cypress cache folder and binary versions
-            # to check if we are caching previous binary versions
-            - run: npx cypress cache path
-            - run: npx cypress cache list
-            - run: npx cypress info
-
-      - cypress/run:
-          name: Mac test
-          executor: mac
-          requires:
-            - Mac install
-          record: true
-          parallel: true
-          parallelism: 2
-          start: 'npm run start:ci'
-          group: 'Mac build'
-
   linux-build:
     jobs:
       # checks out code and installs dependencies once
