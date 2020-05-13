@@ -2,7 +2,6 @@ version: 2.1
 orbs:
   cypress: cypress-io/cypress@1.16.1
 
-jobs:
   linux-build:
     jobs:
       # checks out code and installs dependencies once
