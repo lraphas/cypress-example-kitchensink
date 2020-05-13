@@ -62,7 +62,6 @@ workflows:
           requires:
             - Linux install
           record: true
-          key: f10ded47-7ac1-4f3e-aba3-21c7971fb73b
           parallel: true
           parallelism: 3
           group: '3x-electron on CircleCI'

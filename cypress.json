@@ -1,3 +1,4 @@
 {
-  "projectId": "2kaptq"
+  "projectId": "2kaptq",
+  "env": { "cypress_record_key": "f10ded47-7ac1-4f3e-aba3-21c7971fb73b" } 
 }
