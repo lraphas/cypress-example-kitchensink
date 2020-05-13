@@ -3,6 +3,11 @@ orbs:
   cypress: cypress-io/cypress@1.16.1
   win: circleci/windows@1
 
+executors:
+  mac:
+    macos:
+      xcode: "10.1.0"
+
 jobs:
   win-test:
     working_directory: ~/app
